@@ -1,0 +1,273 @@
+$color-light: #ffffff;
+$color-light-green: #5b753b;
+$color-primary: #3b3e66;
+$color-bright-green: #363;
+$color-primary-darker: rgba(7, 9, 25, 0.15);
+$color-primary-green: #112325;
+$color-green-lighter: #b0d186;
+
+// BREAKPOINTS FOR RESPONSIVENESS
+$breakpoints: (
+  'lg-large': (
+    max-width: 1440px,
+  ),
+  'lg-medium': (
+    max-width: 1320px,
+  ),
+  'lg-small': (
+    max-width: 1280px,
+  ),
+  'lg': (
+    max-width: 1200px,
+  ),
+  'md-large': (
+    max-width: 1024px,
+  ),
+  'md': (
+    max-width: 992px,
+  ),
+  'sm': (
+    max-width: 768px,
+  ),
+  'xs': (
+    max-width: 320px,
+  ),
+  'xs-m': (
+    max-width: 375px,
+  ),
+  'xs-l': (
+    max-width: 575px,
+  ),
+  'xs-l-landscape': (
+    min-width: 320px,
+  )
+  and
+  (
+    max-width: 575px,
+  )
+  and
+  (
+    orientation: landscape,
+  ),
+  'min-sm-height': (
+    min-height: 1024px,
+  ),
+  'min-sm-medium': (
+    min-width: 575px,
+  ),
+  'min-sm': (
+    min-width: 769px,
+  ),
+  'min-sm-large': (
+    min-width: 850px,
+  ),
+  'min-md': (
+    min-width: 992px,
+  ),
+  'min-md-large': (
+    min-width: 1024px,
+  ),
+  'min-md-large-portrait': (
+    min-width: 768px,
+  )
+  and
+  (
+    max-width: 1024px,
+  )
+  and
+  (
+    orientation: portrait,
+  ),
+  'min-md-large-landscape': (
+    min-width: 768px,
+  )
+  and(
+    max-width: 1024px,
+  )
+  and(
+    orientation: landscape,
+  ),
+  'min-lg-small': (
+    min-width: 1170px,
+  ),
+  'min-lg': (
+    min-width: 1200px,
+  ),
+  'min-lg-medium-small': (
+    min-width: 1300px,
+  ),
+  'min-lg-medium': (
+    min-width: 1320px,
+  ),
+  'min-lg-large': (
+    min-width: 1440px,
+  ),
+);
+
+@mixin button {
+  background: $color-dark-grey;
+  border: none !important;
+  font-size: 12px;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: $color-dark-grey;
+  }
+}
+
+@mixin respond-to($breakpoint) {
+  $raw-query: map-get($breakpoints, $breakpoint);
+
+  @if $raw-query {
+    $query: if(type-of($raw-query) == 'string', unquote($raw-query), inspect($raw-query));
+
+    @media #{$query} {
+      @content;
+    }
+  } @else {
+    @error 'No value found for `#{$breakpoint}`. '
+    +'Please make sure it is defined in `$breakpoints` map.';
+  }
+}
+
+.select {
+  &:global(.ant-select-single.ant-select-lg:not(.ant-select-customize-input) .ant-select-selector) {
+    border-radius: 8px;
+    height: 35px;
+    &:hover,
+    &:active,
+    &:focus {
+      border-color: $color-green-lighter;
+      box-shadow: none;
+      outline: none;
+    }
+  }
+}
+
+.ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner::before {
+  border: 1px solid $color-green-lighter;
+}
+
+.ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner,
+.ant-picker-cell-in-view.ant-picker-cell-range-start .ant-picker-cell-inner,
+.ant-picker-cell-in-view.ant-picker-cell-range-end .ant-picker-cell-inner {
+  background: $color-green-lighter;
+}
+
+.ant-picker-range-wrapper {
+  .ant-btn-primary {
+    background: linear-gradient(90deg, #5f8d21 3%, #9ba513 98%);
+    border-color: $color-green-lighter;
+    color: #fff;
+  }
+  .ant-picker-time-panel-column > li.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner {
+    background: #e9efe1;
+  }
+}
+
+.loading-overlay {
+  z-index: 1050;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.loading {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 2px solid rgba($color-green-lighter, 0.2);
+  border-radius: 50%;
+  border-top-color: $color-green-lighter;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+  left: calc(50% - 15px);
+  top: calc(50% - 15px);
+  position: fixed;
+  z-index: 1;
+}
+
+.ant-picker-focused {
+  border-color: $color-green-lighter;
+}
+
+::selection {
+  background: $color-green-lighter;
+}
+
+.ant-spin-dot-item {
+  background-color: $color-green-lighter;
+}
+
+.page {
+  padding-left: 32px;
+  padding-right: 32px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  .pageContainer {
+    margin-top: 32px;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+}
+
+.tableActions {
+  display: flex;
+}
+
+.topHeader {
+  background: #ffffff;
+  padding: 32px 28px 16px 14px;
+  width: 100%;
+  display: grid;
+  border-radius: 8px;
+  .topHeaderButtons {
+    background: #ffffff;
+    justify-content: space-between;
+    border-radius: 8px;
+    display: flex;
+  }
+  .topHeaderDetails {
+    padding: 32px 28px 16px 14px;
+  }
+}
+
+.selectContainer {
+  // margin-top: 32px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  // justify-content: space-between;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+
+  .selectLabel {
+    font-size: initial;
+    color: black;
+    text-transform: capitalize;
+    padding: 0 2px;
+  }
+
+  .selectDiv {
+    width: 24%;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    margin: 5px 0 0 10px;
+  }
+}
+
+.searchContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
